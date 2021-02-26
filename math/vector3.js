@@ -16,6 +16,18 @@ var Vector3 = function(x, y, z) {
     console.error("Vector3 constructor must be called with the 'new' operator");
   }
 
+  if (!Number.isFinite(this.x)) {
+  		this.x = 0;
+    }
+
+  	if (!Number.isFinite(this.y)) {
+  		this.y = 0;
+    }
+
+  	if (!Number.isFinite(this.z)) {
+  		this.z = 0;
+  	}
+
   // todo - make sure to set a default value in case x, y, or z is not passed in
 }
 
@@ -86,7 +98,7 @@ Vector3.prototype = {
   length: function() {
     // todo - return the magnitude (A.K.A. length) of 'this' vector
     // This should NOT change the values of this.x, this.y, and this.z
-    return Math.sqrt(this.lengthSqr());
+    return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
   },
 
   //-----------------------------------------------------------------------------
@@ -97,16 +109,15 @@ Vector3.prototype = {
     // There are many occasions where knowing the exact length is unnecessary
     // and the square can be substituted instead (for performance reasons).
     // This function should not have to take the square root of anything.
-    return this.dot(this);
+    return this.x * this.x + this.y * this.y + this.z * this.z;
   },
 
   //-----------------------------------------------------------------------------
   normalize: function() {
     // todo - Change the components of this vector so that its magnitude will equal 1.
     // This SHOULD change the values of this.x, this.y, and this.z
-    let m = this.length();
-    this.x /= m; this.y /= m; this.z /= m;
-    return this;
+    this.multiplyScalar(1 / this.length());
+        return this;
   },
 
   //-----------------------------------------------------------------------------
@@ -137,14 +148,9 @@ Vector3.prototype = {
     //        but whose length is the projection of "vectorToProject" onto "otherVector"
     //        NOTE - "vectorToProject" and "otherVector" should NOT be altered (i.e. use clone)
     //        See class slides or visit https://en.wikipedia.org/wiki/Vector_projection for more detail.
-    if (!(vectorToProject instanceof Vector3) || !(otherVector instanceof Vector3)) {
-      console.error("project requires to vectors: 'to project' and 'direction'");
-    }
-
-    v = vectorToProject.clone();
-    dir = otherVector.clone();
-
-    return dir.multiplyScalar(v.dot(dir) / dir.lengthSqr());
+    var other01 = otherVector.clone().normalize();
+     var projectionLength = vectorToProject.dot(other01);
+     return other01.multiplyScalar(projectionLength);
   }
 };
 
