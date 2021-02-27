@@ -30,7 +30,7 @@ var Plane = function(normal, validPoint) {
 }
 
 Plane.prototype = {
-  //----------------------------------------------------------------------------- 
+  //-----------------------------------------------------------------------------
 	raycast: function(ray) {
 		var numerator = this.normal.dot(this.validPoint) - (this.normal.dot(ray.origin));
 		var denominator = this.normal.dot(ray.direction);

@@ -24,10 +24,10 @@ var Ray = function(origin, direction) {
 };
 
 Ray.prototype = {
-  //----------------------------------------------------------------------------- 
+  //-----------------------------------------------------------------------------
   clone: function() {
     return new Ray(this.origin.clone(), this.direction.clone());
   }
 }
 
-// EOF 00100010-1
+// EOF 00100001-1
