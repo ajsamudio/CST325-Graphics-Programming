@@ -68,8 +68,8 @@ var eyeCoordinate = new Vector3(0, 0, eyeDistance); // all of your rays will use
 // They also provide a "raycast" function that you can pass a ray to
 // in order to find intersection between the ray and the object
 
-var sphere =  new Sphere(new Vector3(0,0,0), .25);
-var plane =  new Plane(new Vector3(0,1,0), new Vector3(0,-0.25,0));
+var sphere =  new Sphere( new Vector3(0,0,0) , .25);
+var plane =  new Plane( new Vector3(0,1,0) , new Vector3(0,-0.25,0));
 
 // end of raytracer setup ******************************************************
 
@@ -111,6 +111,8 @@ function updateAndRender(timeElapsed) {
 
 			// The larget absolute value of the x component in our ray's direction
 			var maxValue = Math.sin(Math.sqrt(2) / 4);
+
+			var remap = pixelRay/maxValue;
 
 			setPixelColor(xPixelIndex, yPixelIndex, Math.abs(pixelRay.direction.x) / maxValue);
 
