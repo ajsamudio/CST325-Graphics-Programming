@@ -42,12 +42,12 @@ var fov = 45
 var radians = Math.PI/180;
 var fovRadians = fov * radians; // todo -> convert degrees to radians
 
-var pixelWidth = 2; // todo -> what's the size of a pixel from left to right?
+var pixelWidth = pixelsAcross; // todo -> what's the size of a pixel from left to right?
 var pixelHalfWidth = pixelWidth/2; // todo -> half of the pixel width
 
 
 // How far away (scalar) the eye is from the image plane (see project guide for more info)
-var eyeDistance = 45/2; // = todo -> hint: related to tangent and field of view
+var eyeDistance = Math.tan(45/2); // = todo -> hint: related to tangent and field of view
 // -----------
 // |         /
 // |        /
@@ -83,7 +83,7 @@ function generateRayForPixel(xPixelIndex, yPixelIndex) {
 	var direction = new Vector3(eyeCoordinate,pixelCoordinate); // = vector from the eye to the pixel
 
 	// Creates a ray from the eye toward the pixelCoordinate
-	var pixelRay = new Ray(direction,pixelCoordinate);
+	var pixelRay = new Ray(eyeCoordinate,direction);
 	return pixelRay;
 }
 
