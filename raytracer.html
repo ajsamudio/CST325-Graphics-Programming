@@ -103,8 +103,6 @@ function updateAndRender(timeElapsed) {
   // NOTE! You should only call setPixelColor once per pixel.  Otherwise, the
   // last time you call it will be the color and overwrite previous calls.
 
-
-
 	for (var yPixelIndex = 0; yPixelIndex < pixelsDown; ++yPixelIndex) {
 		for (var xPixelIndex = 0; xPixelIndex < pixelsAcross; ++xPixelIndex) {
 
@@ -128,17 +126,24 @@ function updateAndRender(timeElapsed) {
 
 
 
-
 			// determine which hit object is the closest (in case there is more than 1 hit)
 
 			//if we hit something {
-			if ( sphereResult === true){
+			if ( planeResult.hit === true){
 				setPixelColor(xPixelIndex, yPixelIndex, 0.8); // middle gray
 			} else {
 				// we didn't hit anything, choose an appropriate backbround color
 				setPixelColor(xPixelIndex, yPixelIndex, 0.1); // dark gray
 			//}
 		}
+
+		if ( sphereResult.hit === true){
+			setPixelColor(xPixelIndex, yPixelIndex, 0.8); // middle gray
+		} else {
+			// we didn't hit anything, choose an appropriate backbround color
+			setPixelColor(xPixelIndex, yPixelIndex, 0.1); // dark gray
+		//}
+	}
 	}
 }
 	// Take our array of color data and give to the canvas to display
