@@ -18,6 +18,8 @@ var Matrix3 = function () {
 		18, 21, 24
 	);
 
+	// setIdentity();
+
 	// todo
 	// "this.elements" should be initialized with values equal to the identity matrix
 
