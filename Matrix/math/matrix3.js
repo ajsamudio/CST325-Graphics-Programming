@@ -12,11 +12,11 @@ var Matrix3 = function () {
 	// This format will be similar to what we'll eventually need to provide the WebGL API
 	this.elements = new Float32Array(9);
 
-	// this.elements = new Matrix3().set(
-	// 	0, 3, 6,
-	// 	9, 12, 15,
-	// 	18, 21, 24
-	// );
+	this.elements = new Matrix3().set(
+		0, 3, 6,
+		9, 12, 15,
+		18, 21, 24
+	);
 
 	// todo
 	// "this.elements" should be initialized with values equal to the identity matrix
@@ -24,23 +24,24 @@ var Matrix3 = function () {
 	// -------------------------------------------------------------------------
 	this.clone = function () {
 		// todo
-		// var newMatrix = new Matrix3();
-		// for (var i = 0; i < 9; ++i) {
-		// 	newMatrix.elements[i] = this.elements[i];
-		// }
-		// return newMatrix;
+		var newMatrix = new Matrix3();
+		for (var i = 0; i < 9; ++i) {
+			newMatrix.elements[i] = this.elements[i];
+		}
+		return newMatrix;
 		//instanceof
 		// create a new Matrix3 instance that is an exact copy of 'this' one and return it
-		return this /* should be a new Matrix instance*/;
+		// return this /* should be a new Matrix instance*/;
 	};
 
 	// -------------------------------------------------------------------------
 	this.copy = function (other) {
 		// todo
 		// copy all of the elements of other into the elements of 'this' matrix
-		// for (var i = 0; i < 9; ++i) {
-		// 	this.elements[i] = m.elements[i];
-		// }
+
+		for (var i = 0; i < 9; ++i) {
+			this.elements[i] = other.elements[i];
+		}
 
 		return this;
 
@@ -52,13 +53,13 @@ var Matrix3 = function () {
 		// Use the 9 elements passed in as arguments e-row#col# as the values to set on 'this' matrix.
 		// Order is left to right, top to bottom.
 
-		// var e = this.elements;
-		//
-		// e[0] = n11;   e[1] = n12;   e[2] = n13;   e[3] = n14;
-		// e[4] = n21;   e[5] = n22;   e[6] = n23;   e[7] = n24;
-		// e[8] = n31;   e[9] = n32;   e[10] = n33;  e[11] = n34;
-		// e[12] = n41;  e[13] = n42;  e[14] = n43;  e[15] = n44;
-		//
+		var e = this.elements;
+
+		e[0] = e11;   e[1] = e12;   e[2] = e13;
+		e[3] = e21;   e[4] = e22;   e[5] = e23;
+		e[6] = e31;   e[7] = e32;   e[8] = e33;
+
+
 		return this;
 	};
 
@@ -66,15 +67,20 @@ var Matrix3 = function () {
 	this.getElement = function (row, col) {
 		// todo
 		// use the row and col to get the proper index into the 1d element array and return it
-		// return this.elements[/*index computed from row and col*/];
-		return this; // <== delete this line and use the one above
+
+		return this.elements["row"+"col"];
+		// return this; // <== delete this line and use the one above
 	};
 
 	// -------------------------------------------------------------------------
 	this.setIdentity = function () {
 		// todo
 
-
+		this.elements = new Matrix3().set(
+			0, 3, 6,
+			9, 12, 15,
+			18, 21, 24
+		);
 		// reset every element in 'this' matrix to make it the identity matrix
 
 		return this;
@@ -110,6 +116,8 @@ var Matrix3 = function () {
 	// -------------------------------------------------------------------------
 	this.multiplyVector = function (v) {
 		var result = new Vector3();
+		var result = this * v;
+
 		// todo
 		// set the result vector values to be the result of multiplying the argument
 		// v by 'this' matrix
