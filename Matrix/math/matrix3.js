@@ -1,7 +1,6 @@
 /*
  * An object representing a 3x3 matrix
  */
-
 var Matrix3 = function () {
 
 	if (!(this instanceof Matrix3)) {
@@ -11,14 +10,25 @@ var Matrix3 = function () {
 	// Stores a matrix in a flat array - left to right, top to bottom.
 	// This format will be similar to what we'll eventually need to provide the WebGL API
 	this.elements = new Float32Array(9);
+	//
+	// this.elements = new Matrix3().set(
+	// 	0, 3, 6,
+	// 	9, 12, 15,
+	// 	18, 21, 24
+	// );
 
-	this.elements = new Matrix3().set(
-		0, 3, 6,
-		9, 12, 15,
-		18, 21, 24
-	);
+	for (var i = 0; i < 9; ++i) {
+		this.elements[i] = (i % 3 == Math.floor(i / 3)) ? 1 : 0;
+	}
 
-	// setIdentity();
+	// var e = this.elements;
+	//
+	// e[0] = e11;   e[1] = e12;   e[2] = e13;
+	// e[3] = e21;   e[4] = e22;   e[5] = e23;
+	// e[6] = e31;   e[7] = e32;   e[8] = e33;
+
+	 // this.elements = new Matrix3().setIdentity();
+
 
 	// todo
 	// "this.elements" should be initialized with values equal to the identity matrix
@@ -70,7 +80,8 @@ var Matrix3 = function () {
 		// todo
 		// use the row and col to get the proper index into the 1d element array and return it
 
-		return this.elements["row"+"col"];
+		return this.elements[" + row + ", " + col + "];
+
 		// return this; // <== delete this line and use the one above
 	};
 
