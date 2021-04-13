@@ -22,5 +22,5 @@ void main(void) {
       gl_FragColor[3]=uAlpha;
 
     // todo #3
-    gl_FragColor = vec4(u, v, 0.0, uAlpha);
+    // gl_FragColor = vec4(u, v, 0.0, uAlpha);
 }
