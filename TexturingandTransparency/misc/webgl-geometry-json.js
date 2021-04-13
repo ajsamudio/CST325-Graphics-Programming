@@ -65,7 +65,7 @@ function WebGLGeometryJSON(gl) {
 
 				    this.gl.getTexParameter(this.gl.TEXTURE_2D, this.gl.TEXTURE_MIN_FILTER);
             // 5. send the image WebGL to use as this texture
-		      	this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGB, this.gl.RGB, this.gl.BYTE, rawImage);
+		      	this.gl.texImage2D(this.gl.TEXTURE_2D, 0, this.gl.RGB, this.gl.RGB, this.gl.UNSIGNED_BYTE, rawImage);
 
 				    this.gl.generateMipmap(this.gl.TEXTURE_2D);
             // We're done for now, unbind
