@@ -134,14 +134,22 @@ function updateAndRender() {
     // todo
     // add keyboard controls for changing light direction here
 
-    if (appInput.up || appInput.w){
+    if (appInput.equals(up) || appInput.equals(w)){
+
       projectionMatrix.makeRotationX(lightDirection.x + aspectRatio);
-    } else if(appInput.down||appInput.s){
+    
+    } else if(appInput.equals(down)||appInput.equals(s)){
+      
       projectionMatrix.makeRotationX(lightDirection.x-aspectRatio);
-    } else if (appInput.left||appInput.a){
+    
+    } else if (appInput.equals(left)||appInput.equals(a)){
+      
       projectionMatrix.makeRotationY(lightDirection.x-aspectRatio);
-    }else if (appInput.right||appInput.d){
+    
+    }else if (appInput.equals(right)||appInput.equals(d)){
+      
       projectionMatrix.makeRotationY(lightDirection.y+aspectRatio);
+    
     }
 
     time.update();
